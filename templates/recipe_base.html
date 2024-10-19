@@ -1,0 +1,31 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block page_title %}{% endblock %}</title>
+
+    <link rel="stylesheet" href="{% static 'css/uikit.min.css' %}">
+    <link rel="stylesheet" href="{% static 'css/main.css' %}">
+
+    <script src="{% static 'js/uikit-icons.min.js' %}"></script>
+    <script src="{% static 'js/uikit.min.js' %}"></script>
+</head>
+<body>
+
+    <div uk-height-viewport="offset-bottom:0" class="uk-flex">
+        <div class="uk-width-small uk-flex uk-flex-column uk-padding-small" style="background-color: lightseagreen; filter:saturate(50%); gap: 15px;">
+            {% include 'menu_button.html' with url_name='all_recipes_url' button_icon='home' button_name='Start'%}
+            {% include 'menu_button.html' with url_name='all_recipes_url' button_icon='list' button_name='Przepisy'%}
+        </div>
+
+        <div class="uk-width-expand">
+            <div class="uk-container">
+                {% block page_content %}{% endblock %}
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

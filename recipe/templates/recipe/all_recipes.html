@@ -1,0 +1,35 @@
+{% extends 'recipe_base.html' %}
+
+{% block page_title %}
+    Lista przepisów
+{% endblock %}
+
+{% block page_content %}
+    <table class="uk-table uk-table-divider uk-table-small uk-table-middle">
+        <thead>
+        <tr>
+            <th>Nazwa przepisu</th>
+            <th>Typ posiłku</th>
+            <th>Kaloryczność</th>
+            <th>Poziom trudności</th>
+            <th>Czas wykonania [min]</th>
+            <th>Ocena</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for recipe in recipes|dictsort:'type_of_meal' %}
+            <tr>
+                <td>{{ recipe.recipe_name|capfirst }}</td>
+                <td>{{ recipe.type_of_meal|capfirst }}</td>
+                <td>{{ recipe.energy_value_kcal|add:' kcal' }}</td>
+                <td>{{ recipe.difficulty_level|capfirst }}</td>
+                <td>{{ recipe.preparation_time }}</td>
+                <td>{{ recipe.recipe_rate|floatformat }}</td>
+                <td><button class="uk-button uk-button-default" type="button">
+                    <a href="{% url 'recipe_details_url' recipe_id=recipe.recipe_id %}">Pokaż przepis</a>
+                </button></td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+{% endblock %}

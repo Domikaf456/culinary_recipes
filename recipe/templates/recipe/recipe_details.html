@@ -1,0 +1,73 @@
+{% extends 'recipe_base.html' %}
+
+{% block page_title %}
+    Przepis
+{% endblock %}
+
+{% block page_content %}
+    <div class="uk-card uk-card-default uk-width-1-2@m">
+        <div class="uk-card-header">
+            <div class="uk-text-italic uk-text-muted">
+                {{ recipe.type_of_meal }}
+            </div>
+            <div class="uk-width-expand uk-text-bold">
+                <h3 class="uk-card-title uk-margin-remove-bottom">{{recipe.recipe_name}}</h3>
+            </div>
+            <span class="uk-form-label">
+                {% if recipe.lactose_free %}
+                    <span class="uk-label lactose-free">{{ recipe.lactose_free }}</span>
+                {% endif %}
+
+                {% if recipe.gluten_free %}
+                    <span class="uk-label gluten-free">{{ recipe.gluten_free }}</span>
+                {% endif %}
+
+                {% if recipe.dairy_free %}
+                    <span class="uk-label dairy-free">{{ recipe.dairy_free }}</span>
+                {% endif %}
+
+                {% if recipe.vegetarian_or_vegan %}
+                    <span class="uk-label vegetarian">{{ recipe.vegetarian_or_vegan }}</span>
+                {% endif %}
+
+                {% if recipe.meat %}
+                    <span class="uk-label meat">{{ recipe.meat }}</span>
+                {% endif %}
+
+                {% if recipe.fish %}
+                    <span class="uk-label fish">{{ recipe.fish }}</span>
+                {% endif %}
+            </span>
+        </div>
+
+        <div class="uk-card-body">
+            <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
+                <div class="uk-flex-last@s uk-card-media-right uk-cover-container">
+                    {% for images in recipe.images.splitlines %}
+                    <img src="{{ recipe.images }}" alt="" uk-cover>
+                    <canvas width="600" height="400"></canvas>
+                    {% endfor %}
+                </div>
+                <div class="uk-card uk-card-hover">
+                    <strong style="font-size: 14px;">Czas przygotowania: {{ recipe.preparation_time }} minut</strong>
+                    <p style="font-size: 14px;">Wartość energetyczna: {{ recipe.energy_value_kcal }} kcal</p>
+                    <p style="font-size: 14px;">Ilość porcji: {{ recipe.quantity_of_servings }} </p>
+                    <p style="font-size: 14px;">Na jedną porcję przypada: białko {{ recipe.protein_g }}, tłuszcze {{ recipe.fat_g }}, węglowodany {{ recipe.carbohydrates_g }}</p>
+                </div>
+            </div>
+
+            <div class="uk-card uk-card-default ingredients_font uk-width-1-2">
+                <h2 class="uk-text-muted" style="font-size: 15px;">Składniki</h2>
+                    <ul class="uk-list uk-list-divider uk-text-lowercase uk-text-small" style="line-height: 0.5;">
+                        {% for ingredient in recipe.ingredients.splitlines %}
+                            <li>{{ ingredient }}</li>
+                        {% endfor %}
+                    </ul>
+            </div>
+        </div>
+        <div class="">
+            {{ recipe.preparation }}
+        </div>
+
+    </div>
+{% endblock %}

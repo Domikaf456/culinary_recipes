@@ -1,0 +1,60 @@
+html {
+    height: 100%;
+}
+
+body {
+    height: 100%;
+}
+
+.lactose-free {
+    color: #FFFFFF;
+    background-color: #FFB6C1;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.gluten-free {
+    color: #FFFFFF;
+    background-color: #9932CC;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.dairy-free {
+    color: #FFFFFF;
+    background-color: #BDB76B;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.vegetarian {
+    color: #FFFFFF;
+    background-color: #228B22;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.meat {
+    color: #FFFFFF;
+    background-color: #A0522D;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.fish {
+    color: #FFFFFF;
+    background-color: 	#66CDAA;
+    padding: 1px 4px;
+    border-radius: 3px;
+}
+
+.ingredients_font {
+    background-color: #f0f0f0;
+    width: 400px;
+    height: auto;
+}
+
+.gap-small {
+    gap: 15px;
+}
+

@@ -1,0 +1,65 @@
+recipe_id,recipe_name,type_of_meal,ingredients,preparation,energy_value_kcal,protein_g,fat_g,carbohydrates_g,difficulty_level,preparation_time,quantity_of_servings,recipe_rate,number_of_ratings,lactose_free,gluten_free,dairy_free,vegetarian_or_vegan,meat,fish,category,images
+1,Kokosowa jaglanka ,Śniadanie,"6 g Wiórki kokosowe
+100 g Borówka amerykańska
+50 g Kasza jaglana
+15 g Migdały
+15 g Miód pszczeli
+20 g Żurawina suszona
+150 ml Napój kokosowy, bez cukru","Kaszę i wiórki wsypać do wrzącej mieszanki napoju roślinnego, wody _100 ml i miodu – gotować do czasu aż kasza wchłonie cały płyn. Kaszę przełożyć do miseczki i podawać posypaną suszoną żurawiną i płatkami migdałów oraz borówkami.",496,9.42,15.66,83.99,Łatwa,20,1,7.5,100,Bez laktozy,Bez glutenu,,Wegetariańskie,,,Wegetariańskie,https://esoxxone.pl/wp-content/uploads/2023/01/jaglanka.jpg
+2,Bigos z kurczakiem i ziemniakami,Obiad ,"180 g Mięso z piersi kurczaka, bez skóry
+11 g Borowik szlachetny, suszony
+38 g Cebula
+8 g Czosnek
+225 g Kapusta kwaszona
+68 g Koncentrat pomidorowy, 30%
+6 g Liść laurowy, suszony
+2 g Pieprz czarny
+8 g Śliwki bez pestek, suszone
+2 g Sól morska
+450 g Ziemniaki
+3 g Ziele angielskie, mielone","Grzyby namoczyć w ciepłej wodzie _około 2 godziny. Kapustę odcedzić, posiekać, wrzucić do garnka, zalać wodą i gotować pod przykryciem z liśćmi laurowymi i zielem angielskim, około 20. Kurczaka pokroić, doprawić pieprzem i solą. Podsmażać razem z cebulą i czosnkiem na patelni bez dodatku tłuszczu. Dorzucić posiekane grzyby, pokrojoną śliwkę oraz przecier pomidorowy i gotować 10-15. Dodać kapustę i doprawić do smaku pieprzem i solą. Podawać z ugotowanymi ziemniakami.",738,59.59,5.50,119.07,Łatwa,45,1.5,9.0,56,Bez laktozy,Bez glutenu,,,Mięsne,,Mięsne,https://justbefit.pl/wp-content/uploads/2023/09/Bigos-z-kurczaka-i-purre-ziemniaczane.webp
+3,Kanapka ze szprotkami,Kolacja,"5 g Szczypiorek
+1 g Pieprz czarny
+50 g Szprot podwędzany w oleju
+70 g Chleb graham
+15 g Sałata zielona, liście
+50 g Jogurt wegański, naturalny - Pilos","Szprotki odsączyć z oleju. Chleb posmarować jogurtem, przyprawić, położyć sałatę. Na jogurcie ułożyć szprotki. Całość posypać szczypiorkiem.",427,11.52,25.98,38.87,Łatwa,10,1,3.8,113,,,,,,Rybne,Rybne,https://img.freepik.com/premium-zdjecie/kanapki-z-szprotkami-na-bialym-tle_185193-73022.jpg
+4,Pulpety drobiowe z ziemniakami i marchewką z groszkiem,Obiad ,"17 g Jaja kurze, całe
+167 ml Bulion warzywny
+20 g Bułki grahamki
+33 g Cebula
+50 g Groszek zielony, mrożony
+73 g Marchew
+1 g Oregano, suszone
+1 g Pieprz czarny
+1 g Sól morska
+7 g Masło
+200 g Kurczak, mięso mielone
+4 g Koper, świeży
+200 g Ziemniaki
+14 g Mąka pszenna pełnoziarnista","Ziemniaki ugotować. Mięso wymieszać z jajkiem, posiekaną cebulką, wcześniej namoczoną w wodzie _około 250 ml bułką, solą, pieprzem i oregano. Formować kotleciki i obtaczać w mącę _2 łyżki. Smażyć na oleju, aż będą rumiane. Do garnka wlać bulion, dodać startą jedną marchew. Całość zagotować. Dodać pulpeciki i gotować ok. 20, co jakiś czas obracając pulpety. Odlać trochę sosu i wymieszać z łyżeczką mąki. Dodać całość do pulpecików. Posiekaną marchew i groszek włożyć do garnka, dolać szklankę wody, posolić i gotować 10-15. Do rozpuszczonego na patelni masła dodać mąkę _1 łyżka i wymieszać. Całość dodać do marchewki z groszkiem. Wymieszać.",704,49.74,25.02,76.10,Średnia,60,2,6.5,187,,,Bez mleka,,Mięsne,,Mięsne,https://pliki.doradcasmaku.pl/pulpety-w-sosie-koperkowym81-4.webp
+5,Wrap na zimno pełnoziarnisty,Śniadanie,"80 g Ogórek
+70 g Papryka czerwona
+12 g Szpinak
+40 g Łosoś, wędzony
+60 g Tortilla pełnoziarnista
+30 g Jogurt wegański, naturalny - Pilos","Tortillę pełnoziarnistą posmarować jogurtem, ułożyć szpinak, pokrojone w paski warzywa i łososia. Całość zwinąć w rulon, następnie pokroić na 6 kawałków.",310,16.45,11.23,36.93,Łatwa,25,1,6.0,4,,,,,,Rybne,Rybne,https://static.fajnegotowanie.pl/media/uploads/media_image/original/przepis/3386/roladki-z-tortilli-z-lososiem.jpg
+6,"Warzywna lasagne",Kolacja,"180 g Bakłażan
+5 g Bazylia, świeża
+150 g Burak
+135 g Marchew
+15 ml Oliwa z oliwek
+525 g Pomidor
+5 g Oregano, suszone
+3 g Pieprz czarny
+3 g Sól morska
+180 g Batat","Wszystkie warzywa pokroić w cienkie paski, posmarować delikatnie oliwą i przyprawiać solą i pieprzem. Ułożyć w naczyniu żaroodpornym. Pomidory pokroić w drobną kostkę i dusić na małym ogniu, doprawić ziołami. Tak przygotowanym sosem zalać ułożone warzywa. Piec w temp 200 stopni około 20.",566,14.43,17.01,100.25,Średnia,30,1.5,9.5,223,Bez laktozy,Bez glutenu,Bez mleka,Wegetariańskie,,,Wegetariańskie,https://media.istockphoto.com/id/1303741768/pl/zdj%C4%99cie/w%C5%82oska-lasagne-z-sosem-pomidorowym-i-serem-podawane-z-pomidorami-i-szpinakiem-jasnym.jpg?s=612x612&w=0&k=20&c=ZJ70ZeWxTqd8KWT_0PHi7pb8KcwMbBeEr0FyItiEK1w=
+7,Jaglanka z jabłkiem oraz cynamonem,Śniadanie,"65 g Płatki jaglane
+250 g Mleko roślinne niesłodzone
+2g Cynamon
+150 g Jabłko
+25 g Masło orzechowe
+20 g Mieszanka orzechów
+135 g Jogurt skyr sojowy","W rondelku zagotowujemy mleko z płatkami jaglanymi. Gotujemy przez 10 minut.
+Połowę jabłka kroimy w drobną kostkę i dodajemy do jaglanki razem z masłem orzechowym oraz jogurtem skyr sojowym, mieszamy.
+Jaglankę przekładamy do miski. Pozostałą połowę jabłka kroimy w paski i układamy na wierzchu, posypujemy posiekanymi orzechami oraz cynamonem. Smacznego!",812,24,33,111,Łatwa,25,1,9.2,87,Bez laktozy,Bez glutenu,,Wegetariańskie/Wegańskie,,,Wegetariańskie,https://lh3.googleusercontent.com/proxy/7DMnDg9JKnMulVmZDjWOZsegGGv1fUUlh8WP0DudpaLZtvmzIjqIl1-IHdHTvihGp4LZsBOUTI5fT_NwkeNJedB2H9FEcJ0CA0Ke1MZ5Lq6iLdH0bY2qYHlA4ARGfZwznk_LONwpgUiEQ_LNjQvZfj3HOvR4JadwTuM
