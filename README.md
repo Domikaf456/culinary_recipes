@@ -27,7 +27,7 @@ Aplikacja korzysta z bazy danych SQLite (db.sqlite3), która jest domyślnie sko
    ```
    git clone https://github.com/Domikaf456/recipes
    ```
-2. Zainstaluj zależności:
+2. Zainstaluj wymagania:
    ```
    pip install -r requirements.txt
    
