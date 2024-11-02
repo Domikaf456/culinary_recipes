@@ -1,3 +1,4 @@
+
 {% extends 'recipe_base.html' %}
 
 {% block page_content %}
@@ -5,10 +6,21 @@
 
     <form method="POST">
         {% csrf_token %}
-        {{ recipe_form.as_p }}
-        {{ stats_form.as_p }}
-        <button type="submit" class="uk-button uk-button-primary">Zapisz zmiany</button>
+        {% for field in recipe_form %}
+            <div class="uk-margin">
+            <label class="uk-form-label">{{ field.label_tag }}</label>
+                <div class="uk-form-controls">
+                    {{ field }}
+                </div>
+                <div class="uk-text-danger uk-margin-small-top">
+                    {{ field.errors }}
+                </div>
+            </div>
+        {% endfor %}
+        <button type="submit" button class="uk-button uk-button-default uk-button-large"">Zapisz zmiany</button>
     </form>
-
-    <a href="{% url 'all_recipes_url' %}">Powrót do wszystkich przepisów</a>
+    <div class="uk-margin">
+        <a href="{% url 'all_recipes_url' %}">Powrót do wszystkich przepisów</a>
+    </div>
 {% endblock %}
+

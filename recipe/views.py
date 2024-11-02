@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from .models import Recipe, RecipeStatistics, RecipeCollection
 from django.http import HttpResponseNotFound, HttpResponseForbidden
 from django.db.models import Avg, Count, Q
-from .forms import RecipeForm, RecipeStatisticsForm
+from .forms import RecipeForm
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required, user_passes_test
 
@@ -76,7 +76,6 @@ def add_recipe(request):
                 fish=recipe_data['fish'],
                 category=recipe_data['category'],
                 images=recipe_data['images'],
-                recipe_rate=recipe_data['recipe_rate'],
                 statistics=stats,
             )
 
@@ -143,28 +142,70 @@ def collection_details(request, id):
         'available_recipes': available_recipes
     })
 
+
 @login_required
 @user_passes_test(lambda u: u.is_superuser)
 def edit_recipe(request, recipe_id):
     recipe = get_object_or_404(Recipe, id=recipe_id)
-    statistics = recipe.statistics
+    statistics = get_object_or_404(RecipeStatistics, recipe=recipe)
 
     if request.method == 'POST':
-        form = RecipeForm(request.POST, instance=recipe)
-        stats_form = RecipeStatisticsForm(request.POST, instance=statistics)
+        form = RecipeForm(request.POST)
 
         if form.is_valid():
-            form.save()
-            stats_form.save()
+            recipe.recipe_id = form.cleaned_data['recipe_id']
+            recipe.recipe_name = form.cleaned_data['recipe_name']
+            recipe.type_of_meal = form.cleaned_data['type_of_meal']
+            recipe.ingredients = form.cleaned_data['ingredients']
+            recipe.preparation = form.cleaned_data['preparation']
+            recipe.difficulty_level = form.cleaned_data['difficulty_level']
+            recipe.preparation_time = form.cleaned_data['preparation_time']
+            recipe.quantity_of_servings = form.cleaned_data['quantity_of_servings']
+            recipe.energy_value_kcal = form.cleaned_data['energy_value_kcal']
+            recipe.protein_g = form.cleaned_data['protein_g']
+            recipe.fat_g = form.cleaned_data['fat_g']
+            recipe.carbohydrates_g = form.cleaned_data['carbohydrates_g']
+            recipe.lactose_free = form.cleaned_data['lactose_free']
+            recipe.gluten_free = form.cleaned_data['gluten_free']
+            recipe.dairy_free = form.cleaned_data['dairy_free']
+            recipe.vegetarian_or_vegan = form.cleaned_data['vegetarian_or_vegan']
+            recipe.meat = form.cleaned_data['meat']
+            recipe.fish = form.cleaned_data['fish']
+            recipe.category = form.cleaned_data['category']
+            recipe.images = form.cleaned_data['images']
+            recipe.save()
+
+            statistics.recipe_rate = form.cleaned_data['recipe_rate']
+            statistics.save()
             return redirect('all_recipes_url')
     else:
-        form = RecipeForm(instance=recipe)
-        stats_form = RecipeStatisticsForm(instance=statistics)
+        initial_data = {
+            'recipe_id': recipe.recipe_id,
+            'recipe_name': recipe.recipe_name,
+            'type_of_meal': recipe.type_of_meal,
+            'ingredients': recipe.ingredients,
+            'preparation': recipe.preparation,
+            'difficulty_level': recipe.difficulty_level,
+            'preparation_time': recipe.preparation_time,
+            'quantity_of_servings': recipe.quantity_of_servings,
+            'energy_value_kcal': recipe.energy_value_kcal,
+            'protein_g': recipe.protein_g,
+            'fat_g': recipe.fat_g,
+            'carbohydrates_g': recipe.carbohydrates_g,
+            'lactose_free': recipe.lactose_free,
+            'gluten_free': recipe.gluten_free,
+            'dairy_free': recipe.dairy_free,
+            'vegetarian_or_vegan': recipe.vegetarian_or_vegan,
+            'meat': recipe.meat,
+            'fish': recipe.fish,
+            'category': recipe.category,
+            'images': recipe.images,
+            'recipe_rate': statistics.recipe_rate
+        }
+        form = RecipeForm(initial=initial_data)
 
     context = {
         'recipe_form': form,
         'recipe': recipe,
-        'stats_form': stats_form
     }
-
     return render(request, 'recipe/edit_recipe.html', context)

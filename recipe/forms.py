@@ -36,25 +36,7 @@ def __init__(self, *args, **kwargs):
     for visible_field in self.visible_fields():
         visible_field.field.widget.attrs['class'] = 'uk-input uk-margin-small-bottom'
 
-class RecipeStatisticsForm(forms.ModelForm):
-    class Meta:
-        model = RecipeStatistics
-        fields = ['recipe_rate']
 
-class RecipeForm(forms.ModelForm):
-    class Meta:
-        model = Recipe
-        fields = [
-            'recipe_id', 'recipe_name', 'type_of_meal', 'ingredients', 'preparation',
-            'difficulty_level', 'preparation_time', 'quantity_of_servings',
-            'energy_value_kcal', 'protein_g', 'fat_g', 'carbohydrates_g',
-            'lactose_free', 'gluten_free', 'dairy_free', 'vegetarian_or_vegan',
-            'meat', 'fish', 'category', 'images'
-        ]
-
-def __init__(self, *args, **kwargs):
-    super(RecipeForm, self).__init__(*args, **kwargs)
-    self.fields['statistics__recipe_rate'].label = 'Recipe Rate'
 
 
 
