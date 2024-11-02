@@ -17,8 +17,8 @@ Użytkownik ma możliwość:
 - dodawania przepisów do osobistych kolekcji
 - filtrowania przepisów według kryteriów, takich jak poziom trudności i nazwa posiłku
 
-Główny katalog aplikacji Django: recipes
-Aplikacje: recipe
+Główny katalog aplikacji Django: recipes;
+Aplikacja: recipe
 
 **Wymagania**
 Aplikacja korzysta z bazy danych SQLite (db.sqlite3), która jest domyślnie skonfigurowana w pliku settings.py, więc nie wymaga dodatkowej konfiguracji.
