@@ -1,0 +1,56 @@
+{% extends 'recipe_base.html' %}
+
+{% block page_title %}
+    Kolekcje
+{% endblock %}
+
+{% block page_content %}
+    <h4 class="uk uk-margin-medium-top">Dodaj nową kolekcję</h4>
+    <form method="POST">
+        {% csrf_token %}
+        <div class="uk-margin">
+            <label class="uk-form-label" for="collection_name">Wpisz nazwę kolekcji:</label>
+            <div class="uk-form-controls">
+                <input class="uk-input" id="collection_name" name="collection_name" type="text"
+                       placeholder="Nazwa kolekcji">
+                <button type="submit" class="uk-button uk-button-default uk-button-default uk-margin-small">
+                    Dodaj
+                </button>
+            </div>
+        </div>
+    </form>
+    <h4>Wszystkie kolekcje</h4>
+    <div class="uk-width-1-1@m">
+    <table class="uk-table uk-table-striped uk-table-small">
+        <thead>
+            <tr>
+                <th>Nazwa Kolekcji</th>
+                <th>Przepisy</th>
+                <th>Szczegóły</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for collection in collections %}
+                <tr>
+                    <td>{{ collection.name }}</td>
+                    <td uk-tooltip="Kliknij, aby dodać przepis do kolekcji."><a href="{% url 'collection_details_url' id=collection.id %}">Szczegóły</a></td>
+                    <td>
+                        <ul>
+                            {% for recipe in collection.recipes.all %}
+                                <li>{{ recipe.recipe_name }}</li>
+                            {% empty %}
+                                <li>Brak przepisów w tej kolekcji.</li>
+                            {% endfor %}
+                        </ul>
+                    </td>
+                </tr>
+            {% empty %}
+                <tr>
+                    <td colspan="3">Brak kolekcji do wyświetlenia.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

@@ -1,0 +1,66 @@
+{% extends 'recipe_base.html' %}
+
+{% block page_content %}
+    <h2>{{ collection.name }}</h2>
+
+    <div class="uk-grid" uk-grid>
+        <div class="uk-width-1-2">
+            <h4>Dodaj przepis do kolekcji:</h4>
+            <form method="POST">
+                {% csrf_token %}
+                <div class="uk-margin">
+                    <label class="uk-form-label">Wybierz przepis do dodania:</label>
+                    <div class="uk-form-controls">
+                        <select name="recipe_id" class="uk-select">
+                            {% for recipe in available_recipes %}
+                                <option value="{{ recipe.id }}">{{ recipe.recipe_name }}</option>
+                            {% empty %}
+                                <option disabled>Brak dostępnych przepisów do dodania</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="uk-button uk-button-default uk-button-large">Dodaj do Kolekcji</button>
+            </form>
+
+            <h5 class="uk uk-margin-bottom">Zostały dodane następujące przepisy:</h5>
+                {% for recipe in collection.recipes.all %}
+                    <div>{{ recipe.recipe_name }}</div>
+                {% empty %}
+                    <p>Brak przepisów w kolekcji.</p>
+                {% endfor %}
+        </div>
+
+        <div class="uk-width-1-2">
+            <h4 class="uk uk-margin">Wyszukaj przepis:</h4>
+
+            <form method="GET" class="uk-form-horizontal uk-margin">
+                <div class="uk-margin">
+                    <label class="uk-form-label">Nazwa posiłku</label>
+                    <div class="uk-form-controls">
+                        <input class="uk-input" type="text" name="recipe_name" placeholder="Wpisz nazwę posiłku">
+                    </div>
+                </div>
+                <div class="uk-margin">
+                    <label class="uk-form-label">Poziom trudności</label>
+                    <div class="uk-form-controls">
+                        <select class="uk-select" name="difficulty_level">
+                            <option value="">Wybierz poziom</option>
+                            <option value="Łatwa">Łatwa</option>
+                            <option value="Średnia">Średnia</option>
+                            <option value="Trudna">Trudna</option>
+                        </select>
+                    </div>
+                </div>
+                <button type="submit" class="uk-button uk-button-default uk-button-large">Filtruj</button>
+            </form>
+
+            <h5 class="uk uk-margin-bottom">Znalezione przepisy:</h5>
+            {% for recipe in recipes %}
+                <div>{{ recipe.recipe_name }}</div>
+            {% empty %}
+                <p>Brak przepisów pasujących do filtra.</p>
+            {% endfor %}
+        </div>
+    </div>
+{% endblock %}
