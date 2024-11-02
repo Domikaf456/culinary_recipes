@@ -36,8 +36,8 @@ Aplikacja korzysta z bazy danych SQLite (db.sqlite3), która jest domyślnie sko
    python manage.py migrate
    
 4. Stwórz superużytkownika, aby mieć dostęp do panelu administratora:
-  ```
-  python manage.py createsuperuser
+     ```
+     python manage.py createsuperuser
 
 5. Uruchom serwer:
    ```
