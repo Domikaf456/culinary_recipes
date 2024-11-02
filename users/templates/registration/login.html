@@ -1,0 +1,18 @@
+{% extends 'recipe_not_log_in_base.html' %}
+
+{% block page_title %}
+    Login
+{% endblock %}
+
+{% block page_content %}
+    <h2 class="uk-text-center">Zaloguj się</h2>
+    <form method="POST" class="uk-form-stacked uk-margin-medium-top uk-text-center">
+        {% csrf_token %}
+        {{ form }}
+        <button class="uk-button-default uk-button uk-margin">Zaloguj</button>
+    </form>
+    <span>
+        <h5 class="uk-text-center">Jeżeli nie masz jeszcze konta
+            <a href="{% url 'register_url' %}">Zarejestruj się</a></h5>
+    </span>
+{% endblock %}
