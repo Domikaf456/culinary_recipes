@@ -16,25 +16,28 @@ Użytkownik ma możliwość:
 - tworzenia osobistych kolekcji
 - dodawania przepisów do osobistych kolekcji
 - filtrowania przepisów według kryteriów, takich jak poziom trudności i nazwa posiłku
-  
+
+Główny katalog aplikacji Django: recipes
+Aplikacje: recipe
+
 **Wymagania**
-Baza danych: Projekt korzysta z domyślnej bazy danych SQLite, więc nie wymaga dodatkowej konfiguracji.
+Aplikacja korzysta z bazy danych SQLite (db.sqlite3), która jest domyślnie skonfigurowana w pliku settings.py, więc nie wymaga dodatkowej konfiguracji.
 
 1. Sklonuj repozytorium:
    ```
-   git clone https://github.com/Domikaf456/Recipes_project
+   git clone https://github.com/Domikaf456/recipes
    ```
 2. Zainstaluj zależności:
    ```
    pip install -r requirements.txt
-
-3. Wykonaj makemigrations recipe
-   ```
-   Przy pierwszej i drugiej migracji należy zahaszować w admin.py admin.site.register(Recipe, RecipeAdmin) i klasę class RecipeCollection w models.py
    
-4. Utwórz bazę danych SQLite i wykonaj migracje:
+3. Utwórz bazę danych SQLite i wykonaj migracje danych:
    ```
    python manage.py migrate
+   
+4. Stwórz superużytkownika, aby mieć dostęp do panelu administratora:
+  ```
+  python manage.py createsuperuser
 
 5. Uruchom serwer:
    ```
