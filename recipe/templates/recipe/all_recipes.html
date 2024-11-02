@@ -7,7 +7,7 @@
 {% block page_content %}
     <div class="uk-grid uk-child-width-1-3 uk-flex-center uk-margin-top uk-margin" >
         <div class="uk-card uk-card-default uk-card-body uk-text-center" >
-            <h5 class="uk-list uk-text-bold">Podsumowanie:</h5>
+            <h5 class="uk-list uk-text-bold" style="color: lightseagreen">Podsumowanie:</h5>
             <ul class="uk-list" style="text-align: justify">
                 <li>Łączna ilość przepisów: {{ aggregate_data.id__count }}</li>
                 <li>Średnia ocena wszystkich przepisów: {{ aggregate_data.statistics__recipe_rate__avg|floatformat:1 }}</li>
@@ -15,7 +15,7 @@
             </ul>
         </div>
         <div class="uk-card uk-card-default uk-card-body uk-text-center">
-            <h5 class="uk-text-bold">Liczba przepisów z podziałem na typ posiłku:</h5>
+            <h5 class="uk-text-bold" style="color: lightseagreen">Liczba przepisów z podziałem na typ posiłku:</h5>
             <ul class="uk-list" style="text-align: justify">
             {% for type_count in meal_type %}
                 <li>{{ type_count.type_of_meal }}: {{ type_count.meal_count }}</li>
@@ -23,7 +23,7 @@
             </ul>
         </div>
         <div class="uk-card uk-card-default uk-card-body uk-text-center">
-            <h5 class="uk-text-bold">Kategorie posiłków:</h5>
+            <h5 class="uk-text-bold" style="color: lightseagreen">Kategorie posiłków:</h5>
             <ul class="uk-list" style="text-align: justify">
                 {% for category in category_counts %}
                     <li>{{ category.category }}: {{ category.category_count }}</li>
