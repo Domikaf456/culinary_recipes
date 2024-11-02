@@ -43,31 +43,48 @@
         <div class="uk-card-body">
             <div class="uk-card uk-card-default uk-grid-collapse uk-child-width-1-2@s uk-margin" uk-grid>
                 <div class="uk-flex-last@s uk-card-media-right uk-cover-container">
-                    {% for images in recipe.images.splitlines %}
+                    {% for image in recipe.images.splitlines %}
                     <img src="{{ recipe.images }}" alt="" uk-cover>
                     <canvas width="600" height="400"></canvas>
                     {% endfor %}
                 </div>
-                <div class="uk-card uk-card-hover">
-                    <strong style="font-size: 14px;">Czas przygotowania: {{ recipe.preparation_time }} minut</strong>
-                    <p style="font-size: 14px;">Wartość energetyczna: {{ recipe.energy_value_kcal }} kcal</p>
-                    <p style="font-size: 14px;">Ilość porcji: {{ recipe.quantity_of_servings }} </p>
-                    <p style="font-size: 14px;">Na jedną porcję przypada: białko {{ recipe.protein_g }}, tłuszcze {{ recipe.fat_g }}, węglowodany {{ recipe.carbohydrates_g }}</p>
+                <div>
+                    <div class="uk-card uk-card-hover uk-card-body" style="padding: 20px;">
+                        <h3 class="uk-text-muted" style="font-size: 16px; font-weight: bold; margin-bottom: 15px;">Informacje o przepisie</h3>
+                        <p style="font-size: 14px; margin-bottom: 8px;">
+                            <strong>Czas przygotowania:</strong> {{ recipe.preparation_time }} minut
+                        </p>
+                        <p style="font-size: 14px; margin-bottom: 8px;">
+                            <strong>Wartość energetyczna:</strong> {{ recipe.energy_value_kcal }} kcal
+                        </p>
+                        <p style="font-size: 14px; margin-bottom: 8px;">
+                            <strong>Ilość porcji:</strong> {{ recipe.quantity_of_servings }}
+                        </p>
+                        <p style="font-size: 14px;">
+                            <strong>Na jedną porcję:</strong><br>
+                                <span style="margin-left: 20px;">Białko: {{ recipe.protein_g }} g</span><br>
+                                <span style="margin-left: 20px;">Tłuszcze: {{ recipe.fat_g }} g</span><br>
+                                <span style="margin-left: 20px;">Węglowodany: {{ recipe.carbohydrates_g }} g</span>
+                        </p>
+                    </div>
                 </div>
             </div>
 
-            <div class="uk-card uk-card-default ingredients_font uk-width-1-2">
-                <h2 class="uk-text-muted" style="font-size: 15px;">Składniki</h2>
-                    <ul class="uk-list uk-list-divider uk-text-lowercase uk-text-small" style="line-height: 0.5;">
+            <div class="uk-card uk-card-default uk-card-body ingredients_font uk-width-1-1@m uk-margin" style="padding: 20px;">
+                <h3 class="uk-text-muted" style="font-size: 16px; font-weight: bold; margin-bottom: 15px;">Składniki</h3>
+                    <ul class="uk-list uk-list-divider uk-text-small" style="line-height: 1.5; padding-left: 20px;">
                         {% for ingredient in recipe.ingredients.splitlines %}
-                            <li>{{ ingredient }}</li>
+                            <li style="margin-bottom: 10px;">
+                            {{ ingredient }}</li>
                         {% endfor %}
                     </ul>
             </div>
-        </div>
-        <div class="">
-            {{ recipe.preparation }}
-        </div>
 
-    </div>
+            <div class="uk-card uk-card-default uk-card-body uk-width-1-1@m" style="padding: 20px;">
+                <h3 class="uk-text-muted" style="font-size: 16px; font-weight: bold; margin-bottom: 15px;">Przygotowanie</h3>
+                    <div style="font-size: 14px; line-height: 1.5;">
+                    {{ recipe.preparation }}
+                    </div>
+            </div>
+        </div>
 {% endblock %}

@@ -1,0 +1,25 @@
+{% extends 'recipe_base.html' %}
+
+{% block page_title %}
+    Dodanie przepisu
+{% endblock %}
+
+{% block page_content %}
+    <form method="POST" class="uk-form-horizontal uk-margin-large uk-margin-medium-top">
+        {% csrf_token %}
+        {% for field in recipe_form %}
+            <div class="uk-margin">
+                <label class="uk-form-label">{{ field.label_tag }}</label>
+                <div class="uk-form-controls">
+                    {{ field }}
+                </div>
+                <div class="uk-text-danger uk-margin-small-top">
+                    {{ field.errors }}
+                </div>
+            </div>
+        {% endfor %}
+        <button class="uk-button uk-button-default uk-button-large" >
+            Zapisz
+        </button>
+    </form>
+{% endblock %}

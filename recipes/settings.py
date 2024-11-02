@@ -9,8 +9,11 @@ https://docs.djangoproject.com/en/5.1/topics/settings/
 For the full list of settings and their values, see
 https://docs.djangoproject.com/en/5.1/ref/settings/
 """
-
+import os
+from dotenv import load_dotenv
 from pathlib import Path
+
+load_dotenv()
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
@@ -37,7 +40,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'recipe'
+    'recipe',
+    'users'
 ]
 
 MIDDLEWARE = [
@@ -82,6 +86,21 @@ DATABASES = {
     }
 }
 
+#DATABASES = {
+#    'default': {
+#        'ENGINE': 'mssql',
+#        'NAME': 'dfrytek',
+#        'USER': 'dfrytek',
+#        'PASSWORD': os.getenv('DATABASE_PASSWORD'),
+#        'HOST': 'morfeusz.wszib.edu.pl',
+#        'PORT': '1433',
+#        'OPTIONS': {
+#            'DRIVER': 'ODBC Driver 18 for SQL Server',
+#            'extra_params': 'Encrypt=no',
+#        }
+#    }
+#}
+
 
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
@@ -123,8 +142,15 @@ STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
 
+#IMAGES_URL = '/images/'
+#IMAGES_ROOT = os.path.join(BASE_DIR, 'images')
+
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
+
+LOGIN_REDIRECT_URL = '/recipes'
+LOGOUT_REDIRECT_URL = '/users/login'
+LOGIN_URL = '/users/login'

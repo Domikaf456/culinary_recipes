@@ -5,31 +5,81 @@
 {% endblock %}
 
 {% block page_content %}
-    <table class="uk-table uk-table-divider uk-table-small uk-table-middle">
+    <div class="uk-grid uk-child-width-1-3 uk-flex-center uk-margin-top uk-margin" >
+        <div class="uk-card uk-card-default uk-card-body uk-text-center" >
+            <h5 class="uk-list uk-text-bold">Podsumowanie:</h5>
+            <ul class="uk-list" style="text-align: justify">
+                <li>Łączna ilość przepisów: {{ aggregate_data.id__count }}</li>
+                <li>Średnia ocena wszystkich przepisów: {{ aggregate_data.statistics__recipe_rate__avg|floatformat:1 }}</li>
+                <li>Ilość posiłków z oceną powyżej 8.0: {{ aggregate_data.favourite_recipes }}</li>
+            </ul>
+        </div>
+        <div class="uk-card uk-card-default uk-card-body uk-text-center">
+            <h5 class="uk-text-bold">Liczba przepisów z podziałem na typ posiłku:</h5>
+            <ul class="uk-list" style="text-align: justify">
+            {% for type_count in meal_type %}
+                <li>{{ type_count.type_of_meal }}: {{ type_count.meal_count }}</li>
+            {% endfor %}
+            </ul>
+        </div>
+        <div class="uk-card uk-card-default uk-card-body uk-text-center">
+            <h5 class="uk-text-bold">Kategorie posiłków:</h5>
+            <ul class="uk-list" style="text-align: justify">
+                {% for category in category_counts %}
+                    <li>{{ category.category }}: {{ category.category_count }}</li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+    <form class="uk-width-1-1 uk-margin-medium-top" style="display: flex;">
+        <input
+                placeholder="Wyszukaj po nazwie"
+                id="title" name="title" class="uk-input uk-border-rounded uk-margin-small-right">
+        <button type="submit" class="uk-button uk-button-default uk-border-rounded">
+            Szukaj
+        </button>
+    </form>
+    {% if filter_title %}
+        <span>Filtr nazwy: {{ filter_title }}</span>
+    {% endif %}
+
+    <table class="uk-table uk-table-divider uk-table-small uk-table-middle uk-table-striped" style="margin-top: 10px;">
         <thead>
-        <tr>
-            <th>Nazwa przepisu</th>
-            <th>Typ posiłku</th>
-            <th>Kaloryczność</th>
-            <th>Poziom trudności</th>
-            <th>Czas wykonania [min]</th>
-            <th>Ocena</th>
+        <tr style="white-space: nowrap;">
+            <th style="text-align: center;">Nazwa przepisu</th>
+            <th style="text-align: center;">Typ posiłku</th>
+            <th style="text-align: center;">Kategoria</th>
+            <th style="text-align: center;">Poziom trudności</th>
+            <th style="text-align: center;">Kaloryczność</th>
+            <th style="text-align: center;">Czas wykonania [min]</th>
+            <th style="text-align: center;">Ocena</th>
+            <th style="text-align: center;">Szczegóły</th>
         </tr>
         </thead>
         <tbody>
-        {% for recipe in recipes|dictsort:'type_of_meal' %}
+        {% for recipe in recipes %}
             <tr>
-                <td>{{ recipe.recipe_name|capfirst }}</td>
-                <td>{{ recipe.type_of_meal|capfirst }}</td>
-                <td>{{ recipe.energy_value_kcal|add:' kcal' }}</td>
-                <td>{{ recipe.difficulty_level|capfirst }}</td>
-                <td>{{ recipe.preparation_time }}</td>
-                <td>{{ recipe.recipe_rate|floatformat }}</td>
+                <td style="text-align: center;">{{ recipe.recipe_name|capfirst }}</td>
+                <td style="text-align: center;">{{ recipe.type_of_meal|capfirst }}</td>
+                <td style="text-align: center;">{{ recipe.category }}</td>
+                <td style="text-align: center;">{{ recipe.difficulty_level|capfirst }}</td>
+                <td style="text-align: center;">{{ recipe.energy_value_kcal|add:' kcal' }}</td>
+                <td style="text-align: center;">{{ recipe.preparation_time }}</td>
+                <td style="text-align: center;">{{ recipe.statistics.recipe_rate|floatformat:2 }}</td>
                 <td><button class="uk-button uk-button-default" type="button">
-                    <a href="{% url 'recipe_details_url' recipe_id=recipe.recipe_id %}">Pokaż przepis</a>
+                    <a href="{% url 'recipe_details_url' id=recipe.id %}" class="uk-button uk-button-text" style="color: #168292">Pokaż przepis</a>
                 </button></td>
+                <td>
+                {% if request.user.is_superuser %}
+                    <button class="uk-button uk-button-default" type="button">
+                        <a href="{% url 'edit_recipe_url' recipe.id %}" class="uk-button uk-button-text" style="color: #168292">Edytuj przepis</a>
+                    </button>
+                {% endif %}
+                </td>
             </tr>
         {% endfor %}
+
         </tbody>
     </table>
+
 {% endblock %}

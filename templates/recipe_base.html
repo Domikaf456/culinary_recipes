@@ -11,21 +11,61 @@
 
     <script src="{% static 'js/uikit-icons.min.js' %}"></script>
     <script src="{% static 'js/uikit.min.js' %}"></script>
+
 </head>
 <body>
 
     <div uk-height-viewport="offset-bottom:0" class="uk-flex">
-        <div class="uk-width-small uk-flex uk-flex-column uk-padding-small" style="background-color: lightseagreen; filter:saturate(50%); gap: 15px;">
-            {% include 'menu_button.html' with url_name='all_recipes_url' button_icon='home' button_name='Start'%}
-            {% include 'menu_button.html' with url_name='all_recipes_url' button_icon='list' button_name='Przepisy'%}
+        <div class="uk-width-medium uk-flex uk-flex-column uk-padding-small" style="background-color: lightseagreen; filter:saturate(50%); gap: 20px;">
+            {% include 'menu_button.html' with url_name='all_recipes_url' name='Start'%}
+            {% include 'menu_button.html' with url_name='all_recipes_url' name='Przepisy'%}
+            {% if user.is_superuser %}
+                {% include 'menu_button.html' with url_name='add_recipe_url' name='Dodaj przepis'%}
+            {% endif %}
+            {% include 'menu_button.html' with url_name='all_collections_url' name='Kolekcje'%}
         </div>
-
         <div class="uk-width-expand">
+        <nav class="uk-navbar-container">
+            <div class="uk-container">
+                <div uk-navbar>
+                    <div class="uk-navbar-left" style="color: gray">
+                        {% if user.is_authenticated %}
+                            <ul class="uk-navbar-nav">
+                                <li class="uk-navbar-item">
+                                    <h6>Jesteś zalogowany jako użytkownik:
+                                        {{ user.get_username|upper }}</h6>
+                                </li>
+                                <li>
+                                {% if user.is_superuser %}
+                                    <a href="{% url 'add_recipe_url' %}">
+                                        Dodaj przepis
+                                    </a>
+                                {% endif %}
+                                </li>
+                            </ul>
+                        {% endif %}
+                    </div>
+                    <div class="uk-navbar-right">
+                        <ul class="uk-navbar-nav">
+                            {% if user.is_authenticated %}
+                                <li class="uk-navbar-item">
+                                    <form method="POST" action="{% url 'logout' %}">
+                                        {% csrf_token %}
+                                        <button class="uk-button uk-button-default">
+                                            Wyloguj
+                                        </button>
+                                    </form>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </nav>
             <div class="uk-container">
                 {% block page_content %}{% endblock %}
             </div>
         </div>
     </div>
-
 </body>
 </html>

@@ -1,65 +1,47 @@
 import csv
 
 from django.db import models
+from .choices import TYPE_OF_MEAL_CHOICES, DIFFICULTY_CHOICES, CATEGORY_CHOICES
+from django.core.validators import MaxValueValidator, MinValueValidator, MinLengthValidator, URLValidator
+from django.contrib.auth.models import User
 
-# Create your models here.
-class Recipe:
+class RecipeStatistics(models.Model):
+    recipe_rate = models.DecimalField(max_digits=10, decimal_places=2, validators=[
+        MinValueValidator(0), MaxValueValidator(10)])
+    number_of_ratings = models.IntegerField(validators=[MinValueValidator(0)])
 
-    def __init__(self, recipe_id, recipe_name, type_of_meal, ingredients, preparation, energy_value_kcal, protein_g,
-                 fat_g,	carbohydrates_g, difficulty_level,preparation_time, quantity_of_servings,
-                 recipe_rate, number_of_ratings,lactose_free, gluten_free, dairy_free, vegetarian_or_vegan, meat, fish, category, images):
-        self.recipe_id = recipe_id
-        self.recipe_name = recipe_name
-        self.type_of_meal = type_of_meal
-        self.ingredients = ingredients
-        self.preparation = preparation
-        self.energy_value_kcal = energy_value_kcal
-        self.protein_g = protein_g
-        self.fat_g = fat_g
-        self.carbohydrates_g = carbohydrates_g
-        self.difficulty_level = difficulty_level
-        self.preparation_time = preparation_time
-        self.quantity_of_servings = quantity_of_servings
-        self.recipe_rate = recipe_rate
-        self.number_of_ratings = number_of_ratings
-        self.lactose_free = lactose_free
-        self.gluten_free = gluten_free
-        self.dairy_free = dairy_free
-        self.vegetarian_or_vegan = vegetarian_or_vegan
-        self.meat = meat
-        self.fish = fish
-        self.category = category
-        self.images = images
+class Recipe(models.Model):
+    recipe_id = models.CharField(max_length=255, blank=True, null=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE, default=3)
+    recipe_name = models.CharField(max_length=1000, validators=[MinLengthValidator(5)])
+    type_of_meal = models.CharField(max_length=255, choices=TYPE_OF_MEAL_CHOICES)
+    ingredients = models.TextField(validators=[MinLengthValidator(10)])
+    preparation = models.TextField(validators=[MinLengthValidator(10)])
+    difficulty_level = models.CharField(max_length=10, choices=DIFFICULTY_CHOICES)
+    preparation_time = models.IntegerField(validators=[MinValueValidator(0)])
+    quantity_of_servings = models.IntegerField(validators=[MinValueValidator(0)])
+    energy_value_kcal = models.CharField(max_length=255, validators=[MinLengthValidator(0)])
+    protein_g = models.FloatField(validators=[MinValueValidator(0)])
+    fat_g = models.FloatField(validators=[MinValueValidator(0)])
+    carbohydrates_g = models.FloatField(validators=[MinValueValidator(0)])
+    lactose_free = models.CharField(max_length=255, blank=True, null=True)
+    gluten_free = models.CharField(max_length=255, blank=True, null=True)
+    dairy_free = models.CharField(max_length=255, blank=True, null=True)
+    vegetarian_or_vegan = models.CharField(max_length=255, blank=True, null=True)
+    meat = models.CharField(max_length=255, blank=True, null=True)
+    fish = models.CharField(max_length=255, blank=True, null=True)
+    category = models.CharField(max_length=255, choices=CATEGORY_CHOICES, blank=True, null=True)
+    images = models.URLField(max_length=1000, blank=True, null=True)
+    statistics = models.OneToOneField(RecipeStatistics, on_delete=models.CASCADE)
 
-    @staticmethod
-    def find_all_recipes():
-        recipes_list = []
-        with open('recipe/migrations/recipes_file_csv.csv', 'r', encoding='UTF-8') as file:
-            reader = csv.DictReader(file, delimiter=',')
+    def __str__(self):
+        return f'{self.recipe_name}'
 
-            for row in reader:
-                recipes_list.append(Recipe(
-                    row['recipe_id'],
-                    row['recipe_name'],
-                    row['type_of_meal'],
-                    row['ingredients'],
-                    row['preparation'],
-                    row['energy_value_kcal'],
-                    float(row['protein_g']),
-                    float(row['fat_g']),
-                    float(row['carbohydrates_g']),
-                    row['difficulty_level'],
-                    int(row['preparation_time']),
-                    float(row['quantity_of_servings']),
-                    float(row['recipe_rate']),
-                    int(row['number_of_ratings']),
-                    row['lactose_free'],
-                    row['gluten_free'],
-                    row['dairy_free'],
-                    row['vegetarian_or_vegan'],
-                    row['meat'],
-                    row['fish'],
-                    row['category'],
-                    row['images']
-                ))
-        return recipes_list
+
+class RecipeCollection(models.Model):
+    name = models.CharField(max_length=255)
+    creation_date = models.DateField(auto_now_add=True)
+    update_date = models.DateField(auto_now=True)
+    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    recipes = models.ManyToManyField(Recipe)
+
