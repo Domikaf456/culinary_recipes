@@ -58,6 +58,12 @@ body {
     gap: 15px;
 }
 
+.side-bar {
+    position: fixed;
+    top: 0;
+    height: 100vh;
+}
+
 .button-hover:hover {
     background-color: #2e8b57;
 }

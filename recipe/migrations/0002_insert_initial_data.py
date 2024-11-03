@@ -33,6 +33,7 @@ def load_initial_data(apps, schema_editor):
                 fish=row['fish'],
                 category=row['category'],
                 images=row['images'],
+                owner=row['owner'],
                 statistics=statistics
             )
 
