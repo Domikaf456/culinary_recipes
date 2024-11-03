@@ -16,7 +16,7 @@
 <body>
 
     <div uk-height-viewport="offset-bottom:0" class="uk-flex">
-        <div class="uk-width-medium uk-flex uk-flex-column uk-padding-small" style="background-color: lightseagreen; filter:saturate(50%); gap: 20px;">
+        <div class="uk-width-medium uk-flex uk-flex-column uk-padding-small" style="background-color: lightseagreen; filter:saturate(50%); gap: 20px; position: fixed; top: 0; height: 100vh;">
             {% include 'menu_button.html' with url_name='all_recipes_url' name='Start'%}
             {% include 'menu_button.html' with url_name='all_recipes_url' name='Przepisy'%}
             {% if user.is_superuser %}

@@ -10,16 +10,16 @@
             <h5 class="uk-list uk-text-bold" style="color: lightseagreen">Podsumowanie:</h5>
             <ul class="uk-list" style="text-align: justify">
                 <li>Łączna ilość przepisów: {{ aggregate_data.id__count }}</li>
-                <li>Średnia ocena wszystkich przepisów: {{ aggregate_data.statistics__recipe_rate__avg|floatformat:1 }}</li>
+                <li>Średnia ocena: {{ aggregate_data.statistics__recipe_rate__avg|floatformat:1 }}</li>
                 <li>Ilość posiłków z oceną powyżej 8.0: {{ aggregate_data.favourite_recipes }}</li>
             </ul>
         </div>
         <div class="uk-card uk-card-default uk-card-body uk-text-center">
-            <h5 class="uk-text-bold" style="color: lightseagreen">Liczba przepisów z podziałem na typ posiłku:</h5>
+            <h5 class="uk-text-bold" style="color: lightseagreen">Typ posiłku:</h5>
             <ul class="uk-list" style="text-align: justify">
-            {% for type_count in meal_type %}
-                <li>{{ type_count.type_of_meal }}: {{ type_count.meal_count }}</li>
-            {% endfor %}
+                {% for type_count in meal_type %}
+                    <li>{{ type_count.type_of_meal }}: {{ type_count.meal_count }}</li>
+                {% endfor %}
             </ul>
         </div>
         <div class="uk-card uk-card-default uk-card-body uk-text-center">
@@ -31,10 +31,9 @@
             </ul>
         </div>
     </div>
-    <form class="uk-width-1-1 uk-margin-medium-top" style="display: flex;">
-        <input
-                placeholder="Wyszukaj po nazwie"
-                id="title" name="title" class="uk-input uk-border-rounded uk-margin-small-right">
+    <form class="uk-width-1-1 uk-margin uk-margin-medium-top" style="display: flex;">
+        <input placeholder="Wyszukaj po nazwie"
+               id="title" name="title" class="uk-input uk-border-rounded uk-margin-small-right">
         <button type="submit" class="uk-button uk-button-default uk-border-rounded">
             Szukaj
         </button>
@@ -42,7 +41,7 @@
     {% if filter_title %}
         <span>Filtr nazwy: {{ filter_title }}</span>
     {% endif %}
-
+    
     <table class="uk-table uk-table-divider uk-table-small uk-table-middle uk-table-striped" style="margin-top: 10px;">
         <thead>
         <tr style="white-space: nowrap;">

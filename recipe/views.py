@@ -117,6 +117,7 @@ def collection_details(request, id):
     recipe_name = request.GET.get('recipe_name')
     difficulty_level = request.GET.get('difficulty_level')
     type_of_meal = request.GET.get('type_of_meal')
+    preparation_time = request.GET.get('preparation_time')
 
     if recipe_name:
         recipes = recipes.filter(recipe_name__icontains=recipe_name)
@@ -124,6 +125,11 @@ def collection_details(request, id):
         recipes = recipes.filter(difficulty_level=difficulty_level)
     if type_of_meal:
         recipes = recipes.filter(type_of_meal=type_of_meal)
+    if preparation_time:
+        if preparation_time == '30':
+            recipes = recipes.filter(preparation_time__lte=30)
+        elif preparation_time == '31':
+            recipes = recipes.filter(preparation_time__gt=30)
 
     available_recipes = Recipe.objects.exclude(id__in=collection.recipes.all())
 
