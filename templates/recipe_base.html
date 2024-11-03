@@ -15,7 +15,7 @@
 </head>
 <body>
     <div uk-height-viewport="offset-bottom:0" class="uk-flex">
-        <div class="uk-width-small uk-flex uk-flex-column uk-padding-small gap-small side-bar" style="background-color: lightseagreen; filter:saturate(50%);">
+        <div class="uk-width-small uk-flex uk-flex-column uk-padding-small" style="background-color: lightseagreen; filter:saturate(50%);position: fixed; top: 0; height: 100vh; gap: 15px">
             {% include 'menu_button.html' with url_name='all_recipes_url' name='Start'%}
             {% include 'menu_button.html' with url_name='all_recipes_url' name='Przepisy'%}
             {% if user.is_superuser %}
@@ -23,7 +23,7 @@
             {% endif %}
             {% include 'menu_button.html' with url_name='all_collections_url' name='Kolekcje'%}
         </div>
-        <div class="uk-width-expand">
+        <div class="uk-width-expand" style="margin-left: 200px;>
             <nav class="uk-navbar-container">
                 <div class="uk-container">
                     <div uk-navbar>
